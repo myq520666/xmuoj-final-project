@@ -16,16 +16,57 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
     background: var(--bg); color: var(--text); line-height: 1.6;
   }
+
+  /* ---- Welcome overlay ---- */
+  .welcome-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4f46e5 100%);
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    opacity: 1; visibility: visible;
+  }
+  .welcome-overlay.hidden {
+    opacity: 0; visibility: hidden; pointer-events: none;
+  }
+  .welcome-content {
+    text-align: center; color: white;
+    animation: welcomeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes welcomeIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .welcome-content h1 {
+    font-size: 2.4rem; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 8px;
+  }
+  .welcome-content .welcome-sub {
+    font-size: 1rem; opacity: 0.75; font-weight: 300; margin-bottom: 24px;
+  }
+  .welcome-content .welcome-spinner {
+    width: 28px; height: 28px; border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white; border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ---- Header ---- */
   .header {
     background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4f46e5 100%);
-    color: white; padding: 48px 24px 40px; text-align: center;
-    position: sticky; top: 0; z-index: 100;
+    color: white; padding: 40px 24px 32px; text-align: center;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     box-shadow: 0 4px 24px rgba(79, 70, 229, 0.25);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
   }
-  .header h1 { font-size: 2rem; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 8px; }
-  .header .subtitle { font-size: 0.95rem; opacity: 0.8; font-weight: 400; }
-  .header .meta { margin-top: 12px; display: flex; gap: 16px; justify-content: center; font-size: 0.85rem; opacity: 0.7; }
-  .container { max-width: 960px; margin: 0 auto; padding: 32px 24px; }
+  .header.hidden { transform: translateY(-100%); }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 4px; }
+  .header .subtitle { font-size: 0.85rem; opacity: 0.8; font-weight: 400; }
+  .header .meta { margin-top: 8px; display: flex; gap: 12px; justify-content: center; font-size: 0.78rem; opacity: 0.7; }
+
+  /* ---- Main content ---- */
+  .header-spacer { height: 160px; }
+  .container { max-width: 960px; margin: 0 auto; padding: 24px 24px 80px; }
   .stats { display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
   .stat-card {
     background: var(--card-bg); border-radius: 12px; padding: 16px 24px;
@@ -121,15 +162,6 @@
   .btn-outline:hover { background: var(--accent-light); }
 
   .footer { text-align: center; padding: 40px 24px 100px; color: var(--text-secondary); font-size: 0.85rem; }
-  .back-to-top {
-    position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px;
-    border-radius: 50%; background: var(--accent); color: white; border: none;
-    cursor: pointer; font-size: 1.2rem; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-    opacity: 0; transform: translateY(12px); transition: all 0.3s; pointer-events: none;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-  .empty-state { text-align: center; padding: 48px 24px; color: var(--text-secondary); display: none; }
 
   .toast {
     position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
@@ -138,6 +170,7 @@
     pointer-events: none; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
   }
   .toast.show { opacity: 1; }
+  .empty-state { text-align: center; padding: 48px 24px; color: var(--text-secondary); display: none; }
 
   .modal-overlay {
     position: fixed; inset: 0; background: rgba(0,0,0,0.4);
@@ -160,13 +193,25 @@
 </head>
 <body>
 
-<div class="header">
+<!-- Welcome overlay -->
+<div class="welcome-overlay" id="welcomeOverlay">
+  <div class="welcome-content">
+    <h1>马玥琦的期末大作业</h1>
+    <p class="welcome-sub">2026年程序设计实践例题 · 厦门大学</p>
+    <div class="welcome-spinner"></div>
+  </div>
+</div>
+
+<!-- Header -->
+<div class="header" id="header">
   <h1>马玥琦的期末大作业</h1>
   <p class="subtitle">2026年程序设计实践例题 — 05李胜睿班</p>
   <div class="meta">
     <span>共 51 题</span><span>·</span><span>AI协同编程</span>
   </div>
 </div>
+
+<div class="header-spacer"></div>
 
 <div class="container">
   <div class="stats">
@@ -1592,8 +1637,6 @@ Q...
   </div>
 </div>
 
-<button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
-
 <div class="footer">
   <p>马玥琦 · 2026年程序设计实践 · 厦门大学</p>
   <p style="margin-top:8px;font-size:0.78rem;">
@@ -1608,103 +1651,139 @@ const PID_LIST = ["LinK01", "LinK02", "LinK03", "LinK04", "LinK05", "LinK06", "L
 const REPO = "myq520666/xmuoj-final-project";
 let editMode = false;
 
+// ========== Welcome overlay ==========
+(function() {
+  var overlay = document.getElementById("welcomeOverlay");
+  setTimeout(function() {
+    overlay.classList.add("hidden");
+    // Remove from DOM after fade
+    setTimeout(function() { overlay.remove(); }, 700);
+  }, 1800);
+})();
+
+// ========== Smart header: hide on scroll down, show on scroll up ==========
+(function() {
+  var header = document.getElementById("header");
+  var lastY = 0;
+  var ticking = false;
+  var threshold = 80;
+
+  function update() {
+    var y = window.scrollY;
+    if (y < threshold) {
+      header.classList.remove("hidden");
+    } else if (y > lastY + 8) {
+      header.classList.add("hidden");
+    } else if (y < lastY - 8) {
+      header.classList.remove("hidden");
+    }
+    lastY = y;
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", function() {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+
+// ========== Problem toggle ==========
 function toggleProblem(h) { h.parentElement.classList.toggle("open"); }
 
 function filterProblems(d) {
-  document.querySelectorAll(".filter-btn").forEach(b => {
-    b.classList.toggle("active", b.textContent.includes(d === "all" ? "全部" : d));
+  document.querySelectorAll(".filter-btn").forEach(function(b) {
+    b.classList.toggle("active", b.textContent.indexOf(d === "all" ? "全部" : d) !== -1);
   });
-  let v = 0;
-  document.querySelectorAll(".problem-card").forEach(c => {
+  var v = 0;
+  document.querySelectorAll(".problem-card").forEach(function(c) {
     if (d === "all" || c.dataset.difficulty === d) { c.style.display = ""; v++; }
     else c.style.display = "none";
   });
   document.getElementById("emptyState").style.display = v ? "none" : "";
 }
 
-function scrollToTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
-window.addEventListener("scroll", () => {
-  document.getElementById("backToTop").classList.toggle("visible", window.scrollY > 400);
-});
-
 function toast(msg) {
-  const t = document.getElementById("toast");
+  var t = document.getElementById("toast");
   t.textContent = msg; t.classList.add("show");
   clearTimeout(t._timer);
-  t._timer = setTimeout(() => t.classList.remove("show"), 2500);
+  t._timer = setTimeout(function() { t.classList.remove("show"); }, 2500);
 }
 
-// ---- Token management ----
+// ========== Token ==========
 function getToken() { return localStorage.getItem("gh_publish_token"); }
 function setToken(t) { localStorage.setItem("gh_publish_token", t); }
-
 function showTokenModal() { document.getElementById("tokenModal").classList.add("show"); document.getElementById("tokenInput").value = getToken() || ""; }
 function closeTokenModal() { document.getElementById("tokenModal").classList.remove("show"); }
 function saveToken() {
-  const t = document.getElementById("tokenInput").value.trim();
+  var t = document.getElementById("tokenInput").value.trim();
   if (t) { setToken(t); toast("Token 已保存"); } else { localStorage.removeItem("gh_publish_token"); toast("Token 已清除"); }
   closeTokenModal();
 }
 
-// ---- Solutions loading ----
+// ========== Solutions ==========
 async function loadSolutions() {
   try {
-    const resp = await fetch("solutions.json?v=" + Date.now());
+    var resp = await fetch("solutions.json?v=" + Date.now());
     if (!resp.ok) return;
-    const data = await resp.json();
-    for (const [pid, content] of Object.entries(data)) {
-      const el = document.getElementById("sol-" + pid);
-      if (el && content) el.innerHTML = content.replace(/\n/g, "<br>");
+    var data = await resp.json();
+    for (var pid in data) {
+      var el = document.getElementById("sol-" + pid);
+      if (el && data[pid]) el.innerHTML = data[pid].replace(/\n/g, "<br>");
     }
   } catch (e) {}
-  // Restore drafts from localStorage
-  for (const pid of PID_LIST) {
-    const saved = localStorage.getItem("draft-" + pid);
-    if (saved) { const ta = document.getElementById("ta-" + pid); if (ta) ta.value = saved; }
+  for (var i = 0; i < PID_LIST.length; i++) {
+    var pid = PID_LIST[i];
+    var saved = localStorage.getItem("draft-" + pid);
+    if (saved) { var ta = document.getElementById("ta-" + pid); if (ta) ta.value = saved; }
   }
 }
 
-// ---- Auto-save drafts ----
-document.addEventListener("DOMContentLoaded", () => {
-  for (const pid of PID_LIST) {
-    const ta = document.getElementById("ta-" + pid);
-    if (ta) ta.addEventListener("input", () => { localStorage.setItem("draft-" + pid, ta.value); });
+document.addEventListener("DOMContentLoaded", function() {
+  for (var i = 0; i < PID_LIST.length; i++) {
+    (function(pid) {
+      var ta = document.getElementById("ta-" + pid);
+      if (ta) ta.addEventListener("input", function() { localStorage.setItem("draft-" + pid, ta.value); });
+    })(PID_LIST[i]);
   }
 });
 
-// ---- Edit mode ----
+// ========== Edit mode ==========
 function toggleEditMode() {
   editMode = !editMode;
-  document.querySelectorAll(".draft-box").forEach(b => b.style.display = editMode ? "" : "none");
+  var boxes = document.querySelectorAll(".draft-box");
+  for (var i = 0; i < boxes.length; i++) boxes[i].style.display = editMode ? "" : "none";
   document.getElementById("editorToolbar").classList.toggle("show", editMode);
   if (editMode) toast("题解编辑模式已开启");
 }
 
-// ---- Export / Import ----
+// ========== Export / Import ==========
 function exportDrafts() {
-  const drafts = {};
-  for (const pid of PID_LIST) {
-    const ta = document.getElementById("ta-" + pid);
+  var drafts = {};
+  for (var i = 0; i < PID_LIST.length; i++) {
+    var pid = PID_LIST[i];
+    var ta = document.getElementById("ta-" + pid);
     if (ta && ta.value.trim()) drafts[pid] = ta.value.trim();
   }
-  const blob = new Blob([JSON.stringify(drafts, null, 2)], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a"); a.href = url; a.download = "drafts_backup.json"; a.click();
+  var blob = new Blob([JSON.stringify(drafts, null, 2)], { type: "application/json" });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a"); a.href = url; a.download = "drafts_backup.json"; a.click();
   URL.revokeObjectURL(url); toast("备份已下载");
 }
 
 function importDrafts() { document.getElementById("importFile").click(); }
 
 function handleImport(e) {
-  const file = e.target.files[0]; if (!file) return;
-  const reader = new FileReader();
+  var file = e.target.files[0]; if (!file) return;
+  var reader = new FileReader();
   reader.onload = function(ev) {
     try {
-      const drafts = JSON.parse(ev.target.result);
-      let c = 0;
-      for (const [pid, content] of Object.entries(drafts)) {
-        const ta = document.getElementById("ta-" + pid);
-        if (ta) { ta.value = content; localStorage.setItem("draft-" + pid, content); c++; }
+      var drafts = JSON.parse(ev.target.result);
+      var c = 0;
+      for (var pid in drafts) {
+        var ta = document.getElementById("ta-" + pid);
+        if (ta) { ta.value = drafts[pid]; localStorage.setItem("draft-" + pid, drafts[pid]); c++; }
       }
       toast("已导入 " + c + " 道题解");
     } catch (err) { toast("文件格式错误"); }
@@ -1712,50 +1791,51 @@ function handleImport(e) {
   reader.readAsText(file); e.target.value = "";
 }
 
-// ---- One-click publish ----
+// ========== Publish ==========
 async function publishAll() {
-  const token = getToken();
+  var token = getToken();
   if (!token) { showTokenModal(); toast("请先设置 GitHub Token"); return; }
 
-  const btn = document.getElementById("btnPublish");
+  var btn = document.getElementById("btnPublish");
   btn.disabled = true; btn.textContent = "发布中...";
 
-  // Collect drafts
-  const solutions = {};
-  for (const pid of PID_LIST) {
-    const ta = document.getElementById("ta-" + pid);
+  var solutions = {};
+  for (var i = 0; i < PID_LIST.length; i++) {
+    var pid = PID_LIST[i];
+    var ta = document.getElementById("ta-" + pid);
     if (ta && ta.value.trim()) solutions[pid] = ta.value.trim();
   }
   if (Object.keys(solutions).length === 0) { toast("请先写至少一道题解"); btn.disabled = false; btn.textContent = "🚀 一键发布"; return; }
 
-  const headers = { Authorization: "token " + token, Accept: "application/vnd.github+json", "Content-Type": "application/json" };
-  const apiBase = "https://api.github.com/repos/" + REPO + "/contents/solutions.json";
+  var headers = { Authorization: "token " + token, Accept: "application/vnd.github+json", "Content-Type": "application/json" };
+  var apiBase = "https://api.github.com/repos/" + REPO + "/contents/solutions.json";
 
   try {
-    // Get current SHA
-    let sha = null;
+    var sha = null;
     try {
-      const r = await fetch(apiBase, { headers });
-      if (r.ok) { const d = await r.json(); sha = d.sha; }
+      var r = await fetch(apiBase, { headers: headers });
+      if (r.ok) { var d = await r.json(); sha = d.sha; }
     } catch (e) {}
 
-    // Upload
-    const body = { message: "更新题解 - " + new Date().toLocaleString("zh-CN"), content: btoa(unescape(encodeURIComponent(JSON.stringify(solutions, null, 2)))), branch: "main" };
+    var body = {
+      message: "更新题解 - " + new Date().toLocaleString("zh-CN"),
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(solutions, null, 2)))),
+      branch: "main"
+    };
     if (sha) body.sha = sha;
 
-    const r = await fetch(apiBase, { method: "PUT", headers, body: JSON.stringify(body) });
-    if (r.ok) {
+    var r2 = await fetch(apiBase, { method: "PUT", headers: headers, body: JSON.stringify(body) });
+    if (r2.ok) {
       toast("✅ 发布成功！1-2 分钟后刷新页面即可看到更新。");
     } else {
-      const err = await r.json();
-      if (err.message && err.message.includes("Bad credentials")) { toast("Token 无效，请重新设置"); showTokenModal(); }
+      var err = await r2.json();
+      if (err.message && err.message.indexOf("Bad credentials") !== -1) { toast("Token 无效，请重新设置"); showTokenModal(); }
       else toast("发布失败: " + (err.message || "未知错误"));
     }
   } catch (e) { toast("网络错误: " + e.message); }
   btn.disabled = false; btn.textContent = "🚀 一键发布";
 }
 
-// Init
 loadSolutions();
 </script>
 </body>
