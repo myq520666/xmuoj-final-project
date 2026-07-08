@@ -1834,24 +1834,32 @@ async function publishAll() {
   var btn = document.getElementById("btnPublish");
   btn.disabled = true; btn.textContent = "发布中...";
 
+  var headers = { Authorization: "token " + token, Accept: "application/vnd.github+json", "Content-Type": "application/json" };
+  var apiBase = "https://api.github.com/repos/" + REPO + "/contents/solutions.json";
+
+  // 先拉取 GitHub 上已有的所有题解，再合并本地草稿
   var solutions = {};
+  var sha = null;
+  try {
+    var r = await fetch(apiBase, { headers: headers });
+    if (r.ok) {
+      var d = await r.json();
+      sha = d.sha;
+      var existing = JSON.parse(decodeURIComponent(escape(atob(d.content))));
+      for (var k in existing) solutions[k] = existing[k];
+    }
+  } catch (e) {}
+
+  // 合并本地草稿（覆盖/新增）
   for (var i = 0; i < PID_LIST.length; i++) {
     var pid = PID_LIST[i];
     var ta = document.getElementById("ta-" + pid);
     if (ta && ta.value.trim()) solutions[pid] = ta.value.trim();
   }
+
   if (Object.keys(solutions).length === 0) { toast("请先写至少一道题解"); btn.disabled = false; btn.textContent = "🚀 一键发布"; return; }
 
-  var headers = { Authorization: "token " + token, Accept: "application/vnd.github+json", "Content-Type": "application/json" };
-  var apiBase = "https://api.github.com/repos/" + REPO + "/contents/solutions.json";
-
   try {
-    var sha = null;
-    try {
-      var r = await fetch(apiBase, { headers: headers });
-      if (r.ok) { var d = await r.json(); sha = d.sha; }
-    } catch (e) {}
-
     var body = {
       message: "更新题解 - " + new Date().toLocaleString("zh-CN"),
       content: btoa(unescape(encodeURIComponent(JSON.stringify(solutions, null, 2)))),
