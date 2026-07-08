@@ -107,6 +107,9 @@
   .difficulty-badge.High { background: #fee2e2; color: #b91c1c; }
   .expand-icon { width: 24px; height: 24px; transition: transform 0.25s; opacity: 0.4; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
   .problem-card.open .expand-icon { transform: rotate(180deg); }
+  .solution-status { font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 10px; letter-spacing: 0.04em; white-space: nowrap; margin-left: 4px; }
+  .solution-status.has { background: #dcfce7; color: #15803d; }
+  .solution-status.none { background: #f3f4f6; color: #9ca3af; }
   .problem-body { display: none; padding: 0 24px 24px; border-top: 1px solid var(--border); }
   .problem-card.open .problem-body { display: block; }
   .section { margin-top: 20px; }
@@ -1742,13 +1745,41 @@ async function loadSolutions() {
     var saved = localStorage.getItem("draft-" + pid);
     if (saved) { var ta = document.getElementById("ta-" + pid); if (ta) ta.value = saved; }
   }
+  updateSolutionBadges();
+}
+
+function updateSolutionBadges() {
+  for (var i = 0; i < PID_LIST.length; i++) {
+    var pid = PID_LIST[i];
+    var el = document.getElementById("sol-" + pid);
+    var draft = localStorage.getItem("draft-" + pid);
+    var hasSolution = (el && el.innerHTML.trim() !== "") || (draft && draft.trim() !== "");
+    if (!el) continue;
+    var header = el.closest(".problem-body");
+    if (!header) continue;
+    header = header.previousElementSibling;
+    if (!header || !header.classList.contains("problem-header")) continue;
+    var badge = header.querySelector(".solution-status");
+    if (!badge) {
+      badge = document.createElement("span");
+      badge.className = "solution-status";
+      header.appendChild(badge);
+    }
+    if (hasSolution) {
+      badge.textContent = "已有题解";
+      badge.className = "solution-status has";
+    } else {
+      badge.textContent = "暂无题解";
+      badge.className = "solution-status none";
+    }
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
   for (var i = 0; i < PID_LIST.length; i++) {
     (function(pid) {
       var ta = document.getElementById("ta-" + pid);
-      if (ta) ta.addEventListener("input", function() { localStorage.setItem("draft-" + pid, ta.value); });
+      if (ta) ta.addEventListener("input", function() { localStorage.setItem("draft-" + pid, ta.value); updateSolutionBadges(); });
     })(PID_LIST[i]);
   }
 });
@@ -1830,6 +1861,7 @@ async function publishAll() {
 
     var r2 = await fetch(apiBase, { method: "PUT", headers: headers, body: JSON.stringify(body) });
     if (r2.ok) {
+      updateSolutionBadges();
       toast("✅ 发布成功！1-2 分钟后刷新页面即可看到更新。");
     } else {
       var err = await r2.json();
@@ -1840,6 +1872,7 @@ async function publishAll() {
   btn.disabled = false; btn.textContent = "🚀 一键发布";
 }
 
+updateSolutionBadges();
 loadSolutions();
 </script>
 </body>
