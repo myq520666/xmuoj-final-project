@@ -214,7 +214,7 @@
   <h1>期末大作业</h1>
   <p class="subtitle">作者：马玥琦</p>
   <div class="meta">
-    <span>共 51 题</span><span>·</span><span>AI协同编程</span>
+    <span>共 62 题</span><span>·</span><span>AI协同编程</span>
   </div>
 </div>
 
@@ -224,7 +224,7 @@
   <div class="stats">
     <div class="stat-card">
       <div class="icon all">📝</div>
-      <div><div class="stat-value">51</div><div class="stat-label">全部题目</div></div>
+      <div><div class="stat-value">62</div><div class="stat-label">全部题目</div></div>
     </div>
     <div class="stat-card">
       <div class="icon easy">🟢</div>
@@ -232,11 +232,11 @@
     </div>
     <div class="stat-card">
       <div class="icon mid">🟡</div>
-      <div><div class="stat-value">24</div><div class="stat-label">中等难度</div></div>
+      <div><div class="stat-value">32</div><div class="stat-label">中等难度</div></div>
     </div>
     <div class="stat-card">
       <div class="icon hard">🔴</div>
-      <div><div class="stat-value">15</div><div class="stat-label">高难度</div></div>
+      <div><div class="stat-value">18</div><div class="stat-label">高难度</div></div>
     </div>
   </div>
 
@@ -1623,9 +1623,249 @@ Q...
         <div class="draft-box" id="draft-LinK14.5" style="display:none">
           <textarea id="ta-LinK14.5" placeholder="在此编写题解..."></textarea>
         </div>
+<div class="problem-card" data-difficulty="Mid">
+      <div class="problem-header" onclick="toggleProblem(this)">
+        <span class="problem-id">LinK51</span>
+        <span class="problem-title">净化迷雾森林(广搜)</span>
+        <span class="difficulty-badge Mid">Mid</span>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="problem-body">
+        <div class="tags"><span class="tag">校外实训</span></div>
+        <div class="section"><div class="section-title">题目描述</div><div class="section-content"><p><span style="color: rgb(35, 31, 23);"><span style="color: rgb(35, 31, 23);"><img alt="image.png" src="/public/upload/3ec4db1361.png" width="539" height="303" /><br /></span></span></p><p><span style="color: rgb(35, 31, 23);"><span style="color: rgb(35, 31, 23);">迷雾森林被加农的玷污了，原本圣洁无比的迷雾森林，如今被彻底玷污，空气中充满着紫色的恶臭。</span></span></p><p><font>林克临危不惧，带上呼吸面罩，挥舞大师之剑的光芒，净化迷雾。林克所到之处，加农褪去，圣洁回归。</font></p><p><span style="color: rgb(35, 31, 23);"><span style="color: rgb(35, 31, 23);"><span style="color: rgb(35, 31, 23);">如下图，红色代表墙壁，紫色的迷雾代表需要净化的空间，金色代表林克开始净化的起点。</span></span></span></p><p><span style="color: rgb(35, 31, 23);"><span style="color: rgb(35, 31, 23);"><span style="color: rgb(35, 31, 23);">从某处开始，林克只能向</span>相邻的紫色区域移动。请问，林克总共能够净化多少区域？</span><br /></span></p></div></div>
+        <div class="section"><div class="section-title">输入格式</div><div class="section-content"><p><span style="color: rgb(35, 31, 23);">包括多个数据集合。每个数据集合的第一行是两个整数W和H，分别表示x方向和y方向瓷砖的数量。W和H都不超过20。</span></p><p><span style="color: rgb(35, 31, 23);">在接下来的H行中，每行包括W个字符。</span></p><p><span style="color: rgb(35, 31, 23);">每个字符表示一个区域的状态，规则如下</span></p><p><span style="color: rgb(35, 31, 23);">1）</span><span style="color: rgb(227, 55, 55);">'.'</span><span style="color: rgb(35, 31, 23);">：代表紫色迷雾；</span></p><p><span style="color: rgb(35, 31, 23);">2）</span><span style="color: rgb(227, 55, 55);">'#'</span><span style="color: rgb(35, 31, 23);">：代表红墙；</span></p><p><span style="color: rgb(35, 31, 23);">3）'@'：代表<span style="color: rgb(35, 31, 23);">林克的起始位置</span>(该字符在每个数据集合中唯一出现一次。）</span></p><p><span style="color: rgb(35, 31, 23);">当在一行中读入的是两个零时，表示输入结束。</span></p></div></div>
+        <div class="section"><div class="section-title">输出格式</div><div class="section-content"><p><span style="color: rgb(35, 31, 23);">对每个数据集合，分别输出一行，显示林克从初始位置出发能净化的迷雾数(记数时包括初始位置的迷雾)。</span><br /></p></div></div><div class="section"><div class="section-title">样例</div><div class="sample-block"><div class="sample-box"><div class="sample-label">输入 #1</div>6 9 \n....#. \n.....# \n...... \n...... \n...... \n...... \n...... \n#@...# \n.#..#. \n0 0</div><div class="sample-box"><div class="sample-label">输出 #1</div>45</div></div></div><div class="section"><div class="section-title">提示</div><div class="section-content"><p style="margin-left: 0px;"><a href="https://www.bilibili.com/video/BV1P64y1177P/?spm_id_from=333.1387.search.video_card.click&vd_source=49902189d2e9b9f94f057b6a032aed5f" target="_blank">Andy(2021)</a></p></div></div><div class="section"><div class="section-title">限制</div><div class="section-content">时间限制: 1000ms &nbsp;|&nbsp; 内存限制: 256MB</div></div>
+        <div class="section">
+          <div class="section-title">📖 马玥琦的题解</div>
+          <div class="solution-display" id="sol-LinK51"></div>
+        </div>
+        <div class="draft-box" id="draft-LinK51" style="display:none">
+          <textarea id="ta-LinK51" placeholder="在此编写题解..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card" data-difficulty="Mid">
+      <div class="problem-header" onclick="toggleProblem(this)">
+        <span class="problem-id">LinK52</span>
+        <span class="problem-title">波克布林的巡逻范围</span>
+        <span class="difficulty-badge Mid">Mid</span>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="problem-body">
+        <div class="tags"><span class="tag">校外实训</span></div>
+        <div class="section"><div class="section-title">题目描述</div><div class="section-content"><p style="margin-left: 0px;"><img alt="image.png" src="/public/upload/6fd3a750d3.png" width="554" height="227" /><br /></p><p style="margin-left: 0px;">有一个m行和n列的方阵区域(m＊n)，横纵坐标范围分别是0∼m−1和0∼n−1。</p><p>一只红色的波克布林从坐标0,0的格子开始巡逻，每一次只能向左，右，上，下四个方向移动一格。</p><p>但是不能进入行坐标和列坐标的数位之和大于k的格子。</p><p>请问该<span style="color: rgb(51, 51, 51);">红色</span><span style="color: rgb(51, 51, 51);">波克布林</span>能够达到多少个格子？</p></div></div>
+        <div class="section"><div class="section-title">输入格式</div><div class="section-content"><p>输入一行，三个整数，由空格隔开，代表k m n</p><p>其中：</p><p><span style="color: rgb(51, 51, 51);">0&lt;=k&lt;=100</span><br /></p><p>0&lt;=m&lt;=50</p><p>0&lt;=n&lt;=50</p></div></div>
+        <div class="section"><div class="section-title">输出格式</div><div class="section-content"><p>一个整数，表示红色<span style="color: rgb(51, 51, 51);">波克布林能达到的多少格子。</span></p></div></div><div class="section"><div class="section-title">样例</div><div class="sample-block"><div class="sample-box"><div class="sample-label">输入 #1</div>18 40 40</div><div class="sample-box"><div class="sample-label">输出 #1</div>1484</div></div></div><div class="section"><div class="section-title">提示</div><div class="section-content"><p><a href="https://www.bilibili.com/video/BV1Lg4y1z73k" target="_blank">Andy的讲解</a><br /></p><p><a href="https://www.acwing.com/video/148/" target="_blank">ACWing讲解</a></p><p>《来源：剑指Offer》</p></div></div><div class="section"><div class="section-title">限制</div><div class="section-content">时间限制: 1000ms &nbsp;|&nbsp; 内存限制: 256MB</div></div>
+        <div class="section">
+          <div class="section-title">📖 马玥琦的题解</div>
+          <div class="solution-display" id="sol-LinK52"></div>
+        </div>
+        <div class="draft-box" id="draft-LinK52" style="display:none">
+          <textarea id="ta-LinK52" placeholder="在此编写题解..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card" data-difficulty="Mid">
+      <div class="problem-header" onclick="toggleProblem(this)">
+        <span class="problem-id">LinK53</span>
+        <span class="problem-title">加农的入侵</span>
+        <span class="difficulty-badge Mid">Mid</span>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="problem-body">
+        <div class="tags"><span class="tag">校外实训</span></div>
+        <div class="section"><div class="section-title">题目描述</div><div class="section-content"><p><img alt="OIP (2).jpg" src="/public/upload/38df660829.jpg" width="474" height="266" /><br /></p><p>加农是罪的化身，所到之处污秽遍地。原先富丽堂皇的海鲁拉城堡也被加农污秽了。</p><p>根据调查，加农污秽一片地区有如下规律：</p><p>设区域为矩形Y×X（1&lt;=Y,X&lt;=100），假设加农从(Mx,My)开始扩散，请问经过几天，加农会完全占据这个区域呢？</p></div></div>
+        <div class="section"><div class="section-title">输入格式</div><div class="section-content"><p>* 第一行: 四个由空格隔开的整数: X, Y, Mx, My</p><p>* 第2到第Y+1行:<span style="color: rgb(51, 51, 51);">每行包含一个由X个字符（<span style="color: rgb(51, 51, 51);">"."表示干净区域，而"*"表示障碍物。</span>）构成的字符串，共同描绘了草地的完整地图。</span></p><p><span style="color: rgb(51, 51, 51);">(1≤X,Y≤100)</span><br /></p></div></div>
+        <div class="section"><div class="section-title">输出格式</div><div class="section-content"><p><span style="color: rgb(51, 51, 51);">输出一个整数，表示加农完全占领该区域所需要的天数。</span><br /></p></div></div><div class="section"><div class="section-title">样例</div><div class="sample-block"><div class="sample-box"><div class="sample-label">输入 #1</div>4 3 1 1\n....\n..*.\n.**.</div><div class="sample-box"><div class="sample-label">输出 #1</div>4</div></div><div class="sample-block"><div class="sample-box"><div class="sample-label">输入 #1</div>10 10 7 5\n*.........\n..........\n........*.\n..........\n.........*\n..........\n..........\n..........\n..*.......\n..........\n</div><div class="sample-box"><div class="sample-label">输出 #1</div>6</div></div></div><div class="section"><div class="section-title">提示</div><div class="section-content"><p><a href="https://www.bilibili.com/video/bv1Li4y1t7Av" target="_blank">Andy的讲解</a></p></div></div><div class="section"><div class="section-title">限制</div><div class="section-content">时间限制: 1000ms &nbsp;|&nbsp; 内存限制: 256MB</div></div>
+        <div class="section">
+          <div class="section-title">📖 马玥琦的题解</div>
+          <div class="solution-display" id="sol-LinK53"></div>
+        </div>
+        <div class="draft-box" id="draft-LinK53" style="display:none">
+          <textarea id="ta-LinK53" placeholder="在此编写题解..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card" data-difficulty="Mid">
+      <div class="problem-header" onclick="toggleProblem(this)">
+        <span class="problem-id">LinK54</span>
+        <span class="problem-title">骑士林克的怜悯(2)</span>
+        <span class="difficulty-badge Mid">Mid</span>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="problem-body">
+        <div class="tags"><span class="tag">校外实训</span></div>
+        <div class="section"><div class="section-title">题目描述</div><div class="section-content"><p><img alt="image.png" src="/public/upload/49550add79.png" width="527" height="315" /><br /></p><p><span style="color: rgb(73, 80, 96);">帮助自己的2D骑士同伴进入到变形棋盘世界不久，林克意识到既然棋盘可变，但是骑士们的战斗水平却没有长进。</span></p><p><span style="color: rgb(73, 80, 96);">虽然可以在见到更多的风景，探索更多不同的空间，但是如果自身的实力没有提升，那么骑士们感受不到那真正的自由以及成长的快乐。</span></p><p>林克找到去到阿卡来研究所，得到新的道具——试炼棋盘。</p><p>这个新道具可以在骑士的2D空间中创造试炼场以及2D守护者，让骑士们可以开始实战演练，提升攻击力。</p><p>请问，2D骑士要偷袭守护者，至少要跳多少次？</p></div></div>
+        <div class="section"><div class="section-title">输入格式</div><div class="section-content"><p>第一行： 两个数，表示棋盘的列数Column(&lt;=150)和行数Row(&lt;=150)</p><p>第二行到结尾: Row行Column列的棋盘。</p></div></div>
+        <div class="section"><div class="section-title">输出格式</div><div class="section-content"><p>一个数，表示跳跃的最小次数。<br /></p></div></div><div class="section"><div class="section-title">样例</div><div class="sample-block"><div class="sample-box"><div class="sample-label">输入 #1</div>10 11\n..........\n....*.....\n..........\n...*.*....\n.......*..\n..*..*...H\n*.........\n...*...*..\n.K........\n...*.....*\n..*....*..\n</div><div class="sample-box"><div class="sample-label">输出 #1</div>5\n</div></div></div><div class="section"><div class="section-title">提示</div><div class="section-content"><p><a href="https://www.bilibili.com/video/bv14i4y1t72T" target="_blank">Andy讲解</a></p></div></div><div class="section"><div class="section-title">限制</div><div class="section-content">时间限制: 1000ms &nbsp;|&nbsp; 内存限制: 256MB</div></div>
+        <div class="section">
+          <div class="section-title">📖 马玥琦的题解</div>
+          <div class="solution-display" id="sol-LinK54"></div>
+        </div>
+        <div class="draft-box" id="draft-LinK54" style="display:none">
+          <textarea id="ta-LinK54" placeholder="在此编写题解..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card" data-difficulty="High">
+      <div class="problem-header" onclick="toggleProblem(this)">
+        <span class="problem-id">LinK55</span>
+        <span class="problem-title">公主的攻击范围</span>
+        <span class="difficulty-badge High">High</span>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="problem-body">
+        <div class="tags"><span class="tag">校外实训</span></div>
+        <div class="section"><div class="section-title">题目描述</div><div class="section-content"><p><img alt="image.png" src="/public/upload/fc4f8b3e16.png" width="844" height="401" /><br /></p><p>塞尔达公主瘦弱的身体里面蕴含着不可思议的神圣力量，这个力量从公主所在的位置释放，可以逐层扩散到加农污秽掌控的区域。</p><p>给定一个N行M列的区域，代号为1的区域是公主能力释放的初始区，代号为0的区域表示需要洁净的区域。</p><p>每经过1毫秒，公主的神圣之光向外扩散一格，洁净相邻区域（4个方向），请计算每个标记为0的区域中加农的势力最多还能得瑟几毫秒。</p></div></div>
+        <div class="section"><div class="section-title">输入格式</div><div class="section-content"><p>第一行两个整数n,m。</p><p>接下来一个N行M列的01矩阵，数字之间没有空格。</p><h4>数据范围</h4><p>1≤N,M≤1000</p></div></div>
+        <div class="section"><div class="section-title">输出格式</div><div class="section-content"><p><span style="color: rgb(51, 51, 51);">一个N行M列的矩阵B，相邻两个整数之间用一个空格隔开。每个整数表示加农势力存在的毫秒数（最小<span style="color: rgb(51, 51, 51);">曼哈顿距离值）</span></span><br /></p></div></div><div class="section"><div class="section-title">样例</div><div class="sample-block"><div class="sample-box"><div class="sample-label">输入 #1</div>3 4\n0001\n0011\n0110</div><div class="sample-box"><div class="sample-label">输出 #1</div>3 2 1 0\n2 1 0 0\n1 0 0 1</div></div></div><div class="section"><div class="section-title">提示</div><div class="section-content"><p><a href="https://www.bilibili.com/video/BV1Rk4y1r7dH" target="_blank">Andy的讲解</a><br /></p><p><a href="https://www.acwing.com/problem/content/video/175/" target="_blank">ACWing讲解</a></p></div></div><div class="section"><div class="section-title">限制</div><div class="section-content">时间限制: 1000ms &nbsp;|&nbsp; 内存限制: 256MB</div></div>
+        <div class="section">
+          <div class="section-title">📖 马玥琦的题解</div>
+          <div class="solution-display" id="sol-LinK55"></div>
+        </div>
+        <div class="draft-box" id="draft-LinK55" style="display:none">
+          <textarea id="ta-LinK55" placeholder="在此编写题解..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card" data-difficulty="High">
+      <div class="problem-header" onclick="toggleProblem(this)">
+        <span class="problem-id">LinK56</span>
+        <span class="problem-title">滚石柱</span>
+        <span class="difficulty-badge High">High</span>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="problem-body">
+        <div class="tags"><span class="tag">校外实训</span></div>
+        <div class="section"><div class="section-title">题目描述</div><div class="section-content"><p><img alt="image.png" src="/public/upload/a1ca7e018c.png" width="508" height="358" /><br /></p><p>努力练习用磁铁拖拉滚动大铁箱的林克，想起了自己小时候喜欢的一个游戏，<a href="https://www.albinoblacksheep.com/games/bloxorz" target="_blank">滚石柱</a>。</p><p>这个游戏的任务是滚动一个1×1×2的长方体<span style="color: rgb(51, 51, 51);">石柱</span>，把它滚动到目的地。</p><p>求把<span style="color: rgb(51, 51, 51);">石柱</span>移动到目标位置（即立在"O"上）所需要的最少步数。</p></div></div>
+        <div class="section"><div class="section-title">输入格式</div><div class="section-content"><p>输入包含多组测试用例。</p><p>对于每个测试用例，第一行包括两个整数N和M。</p><p>接下来N行用来描述地图，每行包括M个字符，每个字符表示一块地面的具体状态。</p><p>当输入用例N=0，M=0时，表示输入终止，且该用例无需考虑。</p><h4><span style="color: rgb(227, 55, 55);">数据范围</span></h4><p>3≤N,M≤500</p></div></div>
+        <div class="section"><div class="section-title">输出格式</div><div class="section-content"><p>每个用例输出一个整数表示所需的最少步数，如果无解则输出"Impossible"。</p><p>每个结果占一行。</p></div></div><div class="section"><div class="section-title">样例</div><div class="sample-block"><div class="sample-box"><div class="sample-label">输入 #1</div>7 7\n#######\n#..X###\n#..##O#\n#....E#\n#....E#\n#.....#\n#######\n0 0</div><div class="sample-box"><div class="sample-label">输出 #1</div>10</div></div></div><div class="section"><div class="section-title">提示</div><div class="section-content"><p><a href="https://www.bilibili.com/video/BV1oK411V7GF" target="_blank">Andy讲解</a><br /></p><p><a href="https://www.acwing.com/problem/content/video/174/" target="_blank">ACWing讲解</a></p><p><span style="color: rgb(51, 51, 51);">《算法竞赛进阶指南》</span><br /></p></div></div><div class="section"><div class="section-title">限制</div><div class="section-content">时间限制: 1000ms &nbsp;|&nbsp; 内存限制: 256MB</div></div>
+        <div class="section">
+          <div class="section-title">📖 马玥琦的题解</div>
+          <div class="solution-display" id="sol-LinK56"></div>
+        </div>
+        <div class="draft-box" id="draft-LinK56" style="display:none">
+          <textarea id="ta-LinK56" placeholder="在此编写题解..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card" data-difficulty="Mid">
+      <div class="problem-header" onclick="toggleProblem(this)">
+        <span class="problem-id">LinK57</span>
+        <span class="problem-title">Dijkstra求最短路(1)</span>
+        <span class="difficulty-badge Mid">Mid</span>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="problem-body">
+        <div class="tags"><span class="tag">Dijkstra</span><span class="tag">搜索与图论</span></div>
+        <div class="section"><div class="section-title">题目描述</div><div class="section-content"><p style="margin-left: 0px;">给定一个n个点m条边的有向图，图中可能存在重边和自环，所有边权均为正值。</p><p>请你求出1号点到n号点的最短距离，如果无法从1号点走到n号点，则输出-1。</p></div></div>
+        <div class="section"><div class="section-title">输入格式</div><div class="section-content"><p>第一行包含整数n和m。</p><p>接下来m行每行包含三个整数x，y，z，表示存在一条从点x到点y的有向边，边长为z。</p></div></div>
+        <div class="section"><div class="section-title">输出格式</div><div class="section-content"><p>输出一个整数，表示1号点到n号点的最短距离。</p><p>如果路径不存在，则输出-1。</p></div></div><div class="section"><div class="section-title">样例</div><div class="sample-block"><div class="sample-box"><div class="sample-label">输入 #1</div>3 3\n1 2 2\n2 3 1\n1 3 4</div><div class="sample-box"><div class="sample-label">输出 #1</div>3</div></div></div><div class="section"><div class="section-title">提示</div><div class="section-content"><p><a href="https://www.acwing.com/problem/content/851/" target="_blank">原题链接</a></p></div></div><div class="section"><div class="section-title">限制</div><div class="section-content">时间限制: 1000ms &nbsp;|&nbsp; 内存限制: 256MB</div></div>
+        <div class="section">
+          <div class="section-title">📖 马玥琦的题解</div>
+          <div class="solution-display" id="sol-LinK57"></div>
+        </div>
+        <div class="draft-box" id="draft-LinK57" style="display:none">
+          <textarea id="ta-LinK57" placeholder="在此编写题解..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card" data-difficulty="Mid">
+      <div class="problem-header" onclick="toggleProblem(this)">
+        <span class="problem-id">LinK58</span>
+        <span class="problem-title">Dijkstra求最短路(2)</span>
+        <span class="difficulty-badge Mid">Mid</span>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="problem-body">
+        <div class="tags"><span class="tag">Dijkstra</span><span class="tag">搜索与图论</span></div>
+        <div class="section"><div class="section-title">题目描述</div><div class="section-content"><p style="margin-left: 0px;">给定一个n个点m条边的有向图，图中可能存在重边和自环，所有边权均为非负值。</p><p>请你求出1号点到n号点的最短距离，如果无法从1号点走到n号点，则输出-1。</p></div></div>
+        <div class="section"><div class="section-title">输入格式</div><div class="section-content"><p>第一行包含整数n和m。</p><p>接下来m行每行包含三个整数x，y，z，表示存在一条从点x到点y的有向边，边长为z。</p></div></div>
+        <div class="section"><div class="section-title">输出格式</div><div class="section-content"><p>输出一个整数，表示1号点到n号点的最短距离。</p><p>如果路径不存在，则输出-1。</p></div></div><div class="section"><div class="section-title">样例</div><div class="sample-block"><div class="sample-box"><div class="sample-label">输入 #1</div>3 3\n1 2 2\n2 3 1\n1 3 4</div><div class="sample-box"><div class="sample-label">输出 #1</div>3</div></div></div><div class="section"><div class="section-title">提示</div><div class="section-content"><p><a href="https://www.acwing.com/problem/content/852/" target="_blank">原题链接</a></p></div></div><div class="section"><div class="section-title">限制</div><div class="section-content">时间限制: 1000ms &nbsp;|&nbsp; 内存限制: 256MB</div></div>
+        <div class="section">
+          <div class="section-title">📖 马玥琦的题解</div>
+          <div class="solution-display" id="sol-LinK58"></div>
+        </div>
+        <div class="draft-box" id="draft-LinK58" style="display:none">
+          <textarea id="ta-LinK58" placeholder="在此编写题解..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card" data-difficulty="Mid">
+      <div class="problem-header" onclick="toggleProblem(this)">
+        <span class="problem-id">LinK59</span>
+        <span class="problem-title">维修电路</span>
+        <span class="difficulty-badge Mid">Mid</span>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="problem-body">
+        <div class="tags"><span class="tag">校外实训</span></div>
+        <div class="section"><div class="section-title">题目描述</div><div class="section-content"><p><span style="color: rgb(51, 51, 51);"><img alt="image.png" src="/public/upload/506795aaeb.png" width="554" height="311" /><br /></span></p><p><span style="color: rgb(51, 51, 51);">林克的大师摩托的飞行装置被撞坏了，极度影响他的卡丁车比赛。下图是飞行装置的</span>电路板示意图。</p><p>电路板的整体结构是一个R行C列的网格（R,C≤500）</p><p>请问如何旋转最少数量的元件，使电源与发动装置重新连同在一起呢？</p></div></div>
+        <div class="section"><div class="section-title">输入格式</div><div class="section-content"><p>输入文件包含多组测试数据。</p><p>第一行包含一个整数T，表示测试数据的数目。</p><p>对于每组测试数据，第一行包含正整数R和C，表示电路板的行数和列数。</p><p>之后R行，每行C个字符，字符是<code>"/"</code>和<code>"\"</code>中的一个，表示标准件的方向。</p></div></div>
+        <div class="section"><div class="section-title">输出格式</div><div class="section-content"><p>对于每组测试数据，在单独的一行输出一个正整数，表示所需的最小旋转次数。</p><p>如果无论怎样都不能使得电源和发动机之间连通，输出NO SOLUTION。</p></div></div><div class="section"><div class="section-title">样例</div><div class="sample-block"><div class="sample-box"><div class="sample-label">输入 #1</div>1\n3 5\n\\/\\\n\\///\n/\\\\</div><div class="sample-box"><div class="sample-label">输出 #1</div>1</div></div></div><div class="section"><div class="section-title">提示</div><div class="section-content"><p style="margin-left: 0px;"><a href="https://www.bilibili.com/video/BV1mC4y1W7Zr" target="_blank">Andy讲解</a></p><p><a href="https://www.acwing.com/problem/content/video/177/" target="_blank">ACWing讲解</a></p><p>改编自《电路维修》</p></div></div><div class="section"><div class="section-title">限制</div><div class="section-content">时间限制: 1000ms &nbsp;|&nbsp; 内存限制: 256MB</div></div>
+        <div class="section">
+          <div class="section-title">📖 马玥琦的题解</div>
+          <div class="solution-display" id="sol-LinK59"></div>
+        </div>
+        <div class="draft-box" id="draft-LinK59" style="display:none">
+          <textarea id="ta-LinK59" placeholder="在此编写题解..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card" data-difficulty="Mid">
+      <div class="problem-header" onclick="toggleProblem(this)">
+        <span class="problem-id">LinK60</span>
+        <span class="problem-title">突袭路线</span>
+        <span class="difficulty-badge Mid">Mid</span>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="problem-body">
+        <div class="tags"><span class="tag">拓扑排序</span><span class="tag">校外实训</span></div>
+        <div class="section"><div class="section-title">题目描述</div><div class="section-content"><p><img alt="image.png" src="/public/upload/d3817e11ae.png" width="554" height="272" /><br /></p><p>为了解救公主，林克必须深入敌后。<br />在备战前，他拿出"关系分析仪"扫描敌营中每个士兵之间的关系。</p><p>林克决定从背后没有人的敌人开始，潜伏到其背后，突袭之，并且避免被其他人发现。</p><p>军营一共有n个敌人，彼此之间的关系有m条射线，请找到一条可以逐个击破敌人的路线图。</p><p>如果找不到这样一条突袭路线，请则输出-1.</p></div></div>
+        <div class="section"><div class="section-title">输入格式</div><div class="section-content"><p>第一行包含两个整数n和m</p><p>接下来m行，每行包含两个整数x和y，表示存在一条从点x到点y的有向边(x, y)。</p></div></div>
+        <div class="section"><div class="section-title">输出格式</div><div class="section-content"><p>共一行，如果存在拓扑序列，则输出拓扑序列。</p><p>否则输出-1。</p></div></div><div class="section"><div class="section-title">样例</div><div class="sample-block"><div class="sample-box"><div class="sample-label">输入 #1</div>3 3\n1 2\n2 3\n1 3</div><div class="sample-box"><div class="sample-label">输出 #1</div>1 2 3</div></div></div><div class="section"><div class="section-title">提示</div><div class="section-content"><p><a href="https://www.bilibili.com/video/BV1x5411s7ev" target="_blank">Andy讲解</a></p><p><a href="https://www.acwing.com/video/280/" target="_blank">acwing讲解</a></p><p>改编自《<span style="color: rgb(73, 80, 96);"><a href="https://www.acwing.com/problem/content/description/850/" target="_blank">有向图的拓扑序列</a>》</span></p></div></div><div class="section"><div class="section-title">限制</div><div class="section-content">时间限制: 1000ms &nbsp;|&nbsp; 内存限制: 256MB</div></div>
+        <div class="section">
+          <div class="section-title">📖 马玥琦的题解</div>
+          <div class="solution-display" id="sol-LinK60"></div>
+        </div>
+        <div class="draft-box" id="draft-LinK60" style="display:none">
+          <textarea id="ta-LinK60" placeholder="在此编写题解..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card" data-difficulty="High">
+      <div class="problem-header" onclick="toggleProblem(this)">
+        <span class="problem-id">LinK61</span>
+        <span class="problem-title">最省赛程</span>
+        <span class="difficulty-badge High">High</span>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="problem-body">
+        <div class="tags"><span class="tag">校外实训</span></div>
+        <div class="section"><div class="section-title">题目描述</div><div class="section-content"><p style="margin-left: 0px;"><img alt="image.png" src="/public/upload/4af77a00ff.png" width="388" height="216" /><br /></p><p style="margin-left: 0px;">为了让自己能够驾驭大师摩托，打开了大师摩托的隐藏任务："赛车试炼"。</p><p style="margin-left: 0px;">然而这个特殊的赛车试炼，竟然比的不是车速，比的是如何"省"油钱。</p><p style="margin-left: 0px;">林克需要驾驶不同邮箱容量各异的赛车，从起点城市S开到终点城市E。</p><p style="margin-left: 0px;">有N个城市（编号0、1…N-1）和M条赛道(构成一张无向图)。<br /></p><p>在每个城市里边都有一个加油站，不同的加油站的单位油价不一样。</p><p>请计算，如果林克驾驶的是一辆油箱容量为C的赛车，那么他从起点城市S开到终点城市E至少要花多少油钱？<br /></p></div></div>
+        <div class="section"><div class="section-title">输入格式</div><div class="section-content"><p>第一行包含两个整数N和M。</p><p>第二行包含N个整数，代表N个城市的单位油价，第i个数即为第i个城市的油价Pi。</p><p>接下来M行，每行包括三个整数u,v,d，表示城市u与城市v之间存在道路，且赛车从u到v需要消耗的油量为d。</p><p>接下来一行包含一个整数q，代表问题数量（q&lt;100)</p><p>接下来q行，每行包含三个整数C、S、E，分别表示<span style="color: rgb(51, 51, 51);">赛车</span>油箱容量、起点城市S、终点城市E。</p></div></div>
+        <div class="section"><div class="section-title">输出格式</div><div class="section-content"><p>对于每个问题，输出一个整数，表示所需的最少油钱。</p><p>如果无法从起点城市开到终点城市，则输出"impossible"。</p><p>每个结果占一行。</p></div></div><div class="section"><div class="section-title">样例</div><div class="sample-block"><div class="sample-box"><div class="sample-label">输入 #1</div>5 5\n10 10 20 12 13\n0 1 9\n0 2 8\n1 2 1\n1 3 11\n2 3 7\n2\n10 0 3\n20 1 4</div><div class="sample-box"><div class="sample-label">输出 #1</div>170\nimpossible</div></div></div><div class="section"><div class="section-title">提示</div><div class="section-content"><p style="margin-left: 0px;"><a href="https://www.bilibili.com/video/BV1sf4y1m7V5" target="_blank">Andy讲解</a></p><p><a href="https://www.acwing.com/problem/content/video/178/" target="_blank">ACWing讲解</a></p><p>改变自《装满的油箱》</p></div></div><div class="section"><div class="section-title">限制</div><div class="section-content">时间限制: 5000ms &nbsp;|&nbsp; 内存限制: 256MB</div></div>
+        <div class="section">
+          <div class="section-title">📖 马玥琦的题解</div>
+          <div class="solution-display" id="sol-LinK61"></div>
+        </div>
+        <div class="draft-box" id="draft-LinK61" style="display:none">
+          <textarea id="ta-LinK61" placeholder="在此编写题解..."></textarea>
+        </div>
       </div>
     </div>
   </div>
+    </div>
   <div class="empty-state" id="emptyState">没有匹配的题目</div>
 </div>
 
@@ -1654,7 +1894,7 @@ Q...
 </div>
 
 <script>
-const PID_LIST = ["LinK01", "LinK02", "LinK03", "LinK04", "LinK05", "LinK06", "LinK07", "LinK08", "LinK09", "LinK10", "LinK11", "LinK12", "LinK13", "LinK14", "LinK15", "LinK16", "LinK17", "LinK18", "LinK19", "LinK20", "LinK21", "LinK22", "LinK23", "LinK24", "LinK25", "LinK26", "LinK27", "LinK28", "LinK29", "LinK30", "LinK31", "LinK32", "LinK33", "LinK34", "LinK35", "LinK36", "LinK37", "LinK38", "LinK39", "LinK40", "LinK41", "LinK42", "LinK43", "LinK44", "LinK45", "LinK46", "LinK47", "LinK48", "LinK49", "LinK50", "LinK14.5"];
+const PID_LIST = ["LinK01", "LinK02", "LinK03", "LinK04", "LinK05", "LinK06", "LinK07", "LinK08", "LinK09", "LinK10", "LinK11", "LinK12", "LinK13", "LinK14", "LinK15", "LinK16", "LinK17", "LinK18", "LinK19", "LinK20", "LinK21", "LinK22", "LinK23", "LinK24", "LinK25", "LinK26", "LinK27", "LinK28", "LinK29", "LinK30", "LinK31", "LinK32", "LinK33", "LinK34", "LinK35", "LinK36", "LinK37", "LinK38", "LinK39", "LinK40", "LinK41", "LinK42", "LinK43", "LinK44", "LinK45", "LinK46", "LinK47", "LinK48", "LinK49", "LinK50", "LinK51", "LinK52", "LinK53", "LinK54", "LinK55", "LinK56", "LinK57", "LinK58", "LinK59", "LinK60", "LinK61", "LinK14.5"];
 const REPO = "myq520666/xmuoj-final-project";
 let editMode = false;
 
