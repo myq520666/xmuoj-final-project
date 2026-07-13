@@ -50,7 +50,7 @@
   "LinK48": "",
   "LinK49": "",
   "LinK50": "",
-  "LinK51": "",
+  "LinK51": "广搜（BFS）核心思想：一层一层向外扩散遍历\n从起点出发，先走完距离起点1步的所有格子，再走距离两步的，以此类推\n源码：\n#include <iostream>\n#include <queue> //队列容器，用于实现BFS，FIFO\n#include <cstring>\nusing namespace std;\n//坐标结构体\nstruct Point{\n    int x,y;\n};\nconst int MAX=25;\nchar map[MAX][MAX];\nbool vis[MAX][MAX];\n//上下左右四个方向\nint dx[4]={-1,1,0,0};\nint dy[4]={0,0,-1,1};\nint main(){\n    int W,H;\n    //循环读入宽高直到0，0\n    while(cin>>W>>H&&W!=0&&H!=0){\n        memset(vis,false,sizeof(vis));\n        int startX,startY;\n        //读取地图\n        for(int i=0;i<H;i++){\n            cin>>map[i];\n            for(int j=0;j<W;j++){\n                if(map[i][j]=='@'){\n                    startX=i;\n                    startY=j;\n                }\n            }\n        }\n        queue<Point> q;\n        q.push({startX,startY});\n        vis[startX][startY]=true;\n        int ans=0;\n        //BFS核心循环\n        while(!q.empty()){\n            ans++;\n            Point cur=q.front();\n            q.pop();\n            for(int i=0;i<4;i++){\n                int nx=cur.x+dx[i];\n                int ny=cur.y+dy[i];\n                //判断：是否越界，是否为障碍物，是否访问过\n                if(nx>=0&&nx<H&&ny>=0&&ny<W){\n                    if(map[nx][ny]!='#'&&!vis[nx][ny]){\n                        vis[nx][ny]=true;\n                        q.push({nx,ny});    \n                    }\n                }\n            }\n        }\n        cout<<ans<<endl;\n    }\n    return 0;\n}",
   "LinK52": "",
   "LinK53": "",
   "LinK54": "",
