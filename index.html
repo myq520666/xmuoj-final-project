@@ -78,7 +78,7 @@
   }
   .stat-card .icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
   .icon.all { background: #eef2ff; } .icon.easy { background: #dcfce7; }
-  .icon.mid { background: #fef3c7; } .icon.hard { background: #fee2e2; }
+  .icon.mid { background: #fef3c7; } .icon.hard { background: #fee2e2; } .icon.solution { background: #ede9fe; }
   .stat-value { font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
   .stat-label { font-size: 0.8rem; color: var(--text-secondary); }
   .filters { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
@@ -237,6 +237,10 @@
     <div class="stat-card">
       <div class="icon hard">🔴</div>
       <div><div class="stat-value" id="statHigh">18</div><div class="stat-label">高难度</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="icon solution">📖</div>
+      <div><div class="stat-value" id="statSolution">0/62</div><div class="stat-label">已有题解</div></div>
     </div>
   </div>
 
@@ -460,11 +464,13 @@ async function loadSolutions() {
 }
 
 function updateSolutionBadges() {
+  var count = 0;
   for (var i = 0; i < PID_LIST.length; i++) {
     var pid = PID_LIST[i];
     var el = document.getElementById("sol-" + pid);
     var draft = localStorage.getItem("draft-" + pid);
     var hasSolution = (el && el.innerHTML.trim() !== "") || (draft && draft.trim() !== "");
+    if (hasSolution) count++;
     if (!el) continue;
     var header = el.closest(".problem-body");
     if (!header) continue;
@@ -484,6 +490,7 @@ function updateSolutionBadges() {
       badge.className = "solution-status none";
     }
   }
+  document.getElementById("statSolution").textContent = count + "/" + PID_LIST.length;
 }
 
 // ========== Edit mode ==========
